@@ -1,3 +1,4 @@
+import java.sql.Time;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,12 +24,14 @@ public class TimePeriod {
         }
         // testBinteractA()
         if ((this.start.after(period.start))
-            && (this.end.after(period.end))) {
+            && (this.end.after(period.end))
+            && (this.BinteractA(period))){
             return true;
         }
         // testAinteractB()
         if ((this.start.before(period.start))
-            && (this.end.before(period.end))) {
+            && (this.end.before(period.end))
+            && (this.AinteractB(period))) {
             return true;
         }
         // testAequalsB()
@@ -41,6 +44,19 @@ public class TimePeriod {
             return true;
         }
 
+        return false;
+    }
+        public boolean BinteractA(TimePeriod period){
+        if(this.start.after(period.start) && this.start.before(period.end)){
+            return true;
+        }
+        return false;
+        }
+
+        public boolean AinteractB(TimePeriod period){
+        if(this.start.before(period.start) && this.end.after(period.start)){
+            return true;
+        }
         return false;
     }
 

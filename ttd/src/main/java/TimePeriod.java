@@ -1,5 +1,6 @@
 import java.sql.Time;
 import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -13,30 +14,30 @@ public class TimePeriod {
     public boolean overlapsWith(TimePeriod period) {
         // testAcontainsB()
         if ((this.start.before(period.start))
-            && (this.end.after(period.end))) {
+                && (this.end.after(period.end))) {
             return true;
         }
         // testBcontainsA()
 
         if ((this.start.after(period.start))
-            && (this.end.before(period.end))) {
+                && (this.end.before(period.end))) {
             return true;
         }
         // testBinteractA()
         if ((this.start.after(period.start))
-            && (this.end.after(period.end))
-            && (this.BinteractA(period))){
+                && (this.end.after(period.end))
+                && (this.BinteractA(period))) {
             return true;
         }
         // testAinteractB()
         if ((this.start.before(period.start))
-            && (this.end.before(period.end))
-            && (this.AinteractB(period))) {
+                && (this.end.before(period.end))
+                && (this.AinteractB(period))) {
             return true;
         }
         // testAequalsB()
         if ((this.start.equals(period.start))
-            && (this.end.equals(period.end))) {
+                && (this.end.equals(period.end))) {
             return true;
         }
         // testAendEqualToBstart()
@@ -46,15 +47,16 @@ public class TimePeriod {
 
         return false;
     }
-        public boolean BinteractA(TimePeriod period){
-        if(this.start.after(period.start) && this.start.before(period.end)){
+
+    public boolean BinteractA(TimePeriod period) {
+        if (this.start.after(period.start) && this.start.before(period.end)) {
             return true;
         }
         return false;
-        }
+    }
 
-        public boolean AinteractB(TimePeriod period){
-        if(this.start.before(period.start) && this.end.after(period.start)){
+    public boolean AinteractB(TimePeriod period) {
+        if (this.start.before(period.start) && this.end.after(period.start)) {
             return true;
         }
         return false;
